@@ -22,3 +22,10 @@ function decrypt($ciphertext) {
     }
     return false;
 }
+
+function checkSession(){
+    session_start();
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+        header('Location: '. BASE_URL . '/'); exit;
+    }
+}

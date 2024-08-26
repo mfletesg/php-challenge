@@ -2,7 +2,8 @@
 
 require_once 'loadEnv.php'; //Obtiene las variables .env para la conexion a la db
 require 'app/controller/AuthController.php'; // Controladores del proyecto
-require 'app/controller/UserController.php'; // Controladores del proyecto
+require 'app/controller/UserController.php'; // Controladores del Usuarios
+require 'app/controller/TaskController.php'; // Controladores del Usuarios
 // require 'app/core/ConnectionDb.php'; //Conexion a la base de datos
 
 define('VIEWS_PATH', __DIR__ . '/app/resources/views');
@@ -13,12 +14,24 @@ switch ($uri) {
         $controller = new AuthController();
         $controller->index();
         break;
+    case '/login':
+        $controller = new AuthController();
+        $controller->login();
+        break;
     case '/user':
         $controller = new UserController();
         $controller->index();
         break;
     case '/user/create':
         $controller = new UserController();
+        $controller->create();
+        break;
+    case '/task':
+        $controller = new TaskController();
+        $controller->index();
+        break;
+    case '/task/create':
+        $controller = new TaskController();
         $controller->create();
         break;
     default:
