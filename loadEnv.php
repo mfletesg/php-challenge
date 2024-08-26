@@ -1,6 +1,13 @@
 <?php
-//Por seguridad del proyecto se toman los valores del archivo .env
 
+define('BASE_PATH', realpath(dirname(__FILE__)));
+
+// Determinar el protocolo (HTTP o HTTPS)
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+// Construir la URL base
+define('BASE_URL', $protocol . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']));
+
+//Por seguridad del proyecto se toman los valores del archivo .env
 //Este archivo lee el contenido del archivo .env, lo procesa y carga las variables de entorno en la superglobal $_ENV de php.
 
 $envFile = __DIR__ . '/.env';
@@ -19,5 +26,3 @@ if (file_exists($envFile)) {
 foreach ($envVars as $key => $value) {
     $_ENV[$key] = $value;
 }
-
-?>
