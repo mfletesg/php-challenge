@@ -5,17 +5,27 @@ require_once './app/functions.php'; // Funciones genericas
 
 class TaskController
 {
-    public function index(bool $isJson = false)
+    public function index()
     {
-        if ($isJson === true) {
-            $userId = $_SESSION['userId'];
-            $responseDb = Task::getAll($userId);
-            $response = ['message' => 'ok', 'data' => $responseDb];
-            http_response_code(200);
-            return json_encode($response);
-        } else {
-            require VIEWS_PATH . '/task.php';
-        }
+        require VIEWS_PATH . '/task.php';
+        // if ($isJson === true) {
+        //     $userId = $_SESSION['userId'];
+        //     $responseDb = Task::getAll($userId);
+        //     $response = ['message' => 'ok', 'data' => $responseDb];
+        //     http_response_code(200);
+        //     return json_encode($response);
+        // } else {
+            
+        // }
+    }
+
+    public function get()
+    {
+        $userId = $_SESSION['userId'];
+        $responseDb = Task::getAll($userId);
+        $response = ['message' => 'ok', 'data' => $responseDb];
+        http_response_code(200);
+        return json_encode($response);
     }
 
     public function create()
@@ -46,6 +56,12 @@ class TaskController
         return json_encode($response);
 
     }
+
+    public function getById()
+    {
+
+    }
+
 
     public function update()
     {

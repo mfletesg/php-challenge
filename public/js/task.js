@@ -81,7 +81,7 @@ class Task {
                             <th scope='row'>"+ task['id'] + "</th>\
                             <td>"+ task['title'] + "</td>\
                             <td>"+ task['description'] + "</td>\
-                            <td>"+ task['status_id'] + "</td>\
+                            <td>"+ task['status']['name'] + "</td>\
                             <td>\
                                 <button type='button' class='btn btn-success btn-sm' onclick='task.openModal(2, "+ task['id'] + ", " + JSON.stringify(task) + " )'>✏️ Editar</button>\
                                 <button type='button' class='btn btn-danger btn-sm' onclick='deleteUser("+ task['id'] + ")'>🗑️ Eliminar</button>\
@@ -111,16 +111,16 @@ class Task {
             case 1:
                 html += "<button type='button' class='btn btn-primary' onclick='task.create(1)'>Crear Tarea</button>"
                 break;
-            
+
             case 2:
                 html += "<button type='button' class='btn btn-primary' onclick='task.create(2)'>Actualizar Tarea</button>"
                 break;
-        
+
             default:
                 break;
         }
-         html += "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>"
-        
+        html += "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>"
+
         document.getElementById('modalFooterTask').innerHTML = html;
         $('#modalTask').modal('show')
     }
