@@ -29,7 +29,7 @@
 
     <div class="container">
         <div class="row">
-            <button type="button" class="btn btn-success" onclick="task.openModal()">Crear Nueva Terea</button>
+            <button type="button" class="btn btn-success" onclick="task.openModal(1)">➕ Crear Nueva Terea</button>
         </div>
         <br><br>
         <div class="row">
@@ -41,27 +41,10 @@
                         <th scope="col">Titulo</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Acción</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                <tbody id="dataTable">
                 </tbody>
             </table>
 
@@ -81,7 +64,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="taskForm">
 
                         <label for="title">Titulo</label>
                         <div class="input-group mb-2 mr-sm-2">
@@ -115,9 +98,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="task.create()">Save changes</button>
+                <div class="modal-footer" id="modalFooterTask">
                 </div>
             </div>
         </div>

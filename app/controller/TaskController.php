@@ -5,12 +5,15 @@ require_once './app/functions.php'; // Funciones genericas
 
 class TaskController
 {
-    public function index($isAjax = false)
+    public function index(bool $isJson = false)
     {
-        if ($isAjax) {
-
+        if ($isJson === true) {
+            $userId = $_SESSION['userId'];
+            $responseDb = Task::getAll($userId);
+            $response = ['message' => 'ok', 'data' => $responseDb];
+            http_response_code(200);
+            return json_encode($response);
         } else {
-            checkSession(); //Funcion para validar la session
             require VIEWS_PATH . '/task.php';
         }
     }
@@ -19,6 +22,7 @@ class TaskController
     {
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);
+        $userId = $_SESSION['userId'];
 
         if (!$data || !isset($data) || !isset($data)) {
             http_response_code(400);
@@ -35,7 +39,7 @@ class TaskController
 
         }
 
-        $responseDb = Task::create($title, $description, $statusId);
+        $responseDb = Task::create($userId, $title, $description, $statusId);
 
         $response = ['message' => 'Tarea creada correctamente', 'data' => $responseDb];
         http_response_code(201);

@@ -7,10 +7,9 @@ require 'app/controller/TaskController.php'; // Controlador de Tareas
 // require 'app/core/ConnectionDb.php'; //Conexion a la base de datos
 
 define('VIEWS_PATH', __DIR__ . '/app/resources/views');
+
 $uri = str_replace('/' . $_ENV['BASE_URL'], '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-
 $method = $_SERVER['REQUEST_METHOD'];
-
 // Detectar si la solicitud es por JSON
 $isJson = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
@@ -26,7 +25,7 @@ switch ($uri) {
             echo json_encode(['error' => 'Método no permitido']);
         }
         break;
-        
+
     case '/user':
         $controller = new UserController();
         if ($method === 'GET') {
@@ -40,9 +39,11 @@ switch ($uri) {
         break;
 
     case '/task':
+        // print_r($_SERVER['HTTP_X_REQUESTED_WITH']);
+        checkSession(); //Funcion para validar la session
         $controller = new TaskController();
         if ($method === 'GET') {
-            $controller->index($isJson);
+            echo $controller->index($isJson);
         } elseif ($method === 'POST') {  // Pasamos $isJSON para manejar la respuesta
             echo $controller->create();
         } elseif ($method === 'PATCH') {
