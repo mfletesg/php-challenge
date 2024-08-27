@@ -13,7 +13,7 @@
 
 <body>
 
-    <form class="form-signin" id="registrationForm" action="<?=BASE_URL?>/user/create" method="post" onsubmit="registerUser.formValidate(event)">
+    <form class="form-signin" id="registrationForm" action="<?=BASE_URL?>/user" method="post" onsubmit="registerUser.formValidate(event)">
       <div class="text-center mb-4">
         <!-- <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
         <h1 class="h3 mb-3 font-weight-normal">Create User</h1>

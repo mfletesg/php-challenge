@@ -15,6 +15,7 @@ class AuthController
   public function login()
   {
     // unset($_SESSION['message']);
+    echo "ok";
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $userName = isset($_POST['inputUserName']) ? $_POST['inputUserName'] : null;
       $password = isset($_POST['inputPassword']) ? $_POST['inputPassword'] : null;

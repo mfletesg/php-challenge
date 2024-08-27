@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema challengDb
+-- Schema challengedb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema challengDb
+-- Schema challengedb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `challengDb` DEFAULT CHARACTER SET utf8 ;
-USE `challengDb` ;
+CREATE SCHEMA IF NOT EXISTS `challengedb` DEFAULT CHARACTER SET utf8 ;
+USE `challengedb` ;
 
 -- -----------------------------------------------------
--- Table `challengDb`.`users`
+-- Table `challengedb`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `challengDb`.`users` (
+CREATE TABLE IF NOT EXISTS `challengedb`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(60) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
@@ -31,9 +31,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `challengDb`.`status`
+-- Table `challengedb`.`status`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `challengDb`.`status` (
+CREATE TABLE IF NOT EXISTS `challengedb`.`status` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`id`))
@@ -41,9 +41,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `challengDb`.`tasks`
+-- Table `challengedb`.`tasks`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `challengDb`.`tasks` (
+CREATE TABLE IF NOT EXISTS `challengedb`.`tasks` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(60) NOT NULL,
   `description` TEXT NOT NULL,
@@ -54,16 +54,16 @@ CREATE TABLE IF NOT EXISTS `challengDb`.`tasks` (
   INDEX `fk_task_status1_idx` (`status_id` ASC),
   CONSTRAINT `fk_task_status1`
     FOREIGN KEY (`status_id`)
-    REFERENCES `challengDb`.`status` (`id`)
+    REFERENCES `challengedb`.`status` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `challengDb`.`users_tasks`
+-- Table `challengedb`.`users_tasks`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `challengDb`.`users_tasks` (
+CREATE TABLE IF NOT EXISTS `challengedb`.`users_tasks` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `task_id` INT NOT NULL,
@@ -72,12 +72,12 @@ CREATE TABLE IF NOT EXISTS `challengDb`.`users_tasks` (
   INDEX `fk_user_task_task1_idx` (`task_id` ASC),
   CONSTRAINT `fk_user_task_user`
     FOREIGN KEY (`user_id`)
-    REFERENCES `challengDb`.`users` (`id`)
+    REFERENCES `challengedb`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_task_task1`
     FOREIGN KEY (`task_id`)
-    REFERENCES `challengDb`.`tasks` (`id`)
+    REFERENCES `challengedb`.`tasks` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -88,13 +88,13 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `challengDb`.`status`
+-- Data for table `challengedb`.`status`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `challengDb`;
-INSERT INTO `challengDb`.`status` (`id`, `name`) VALUES (DEFAULT, 'pendiente');
-INSERT INTO `challengDb`.`status` (`id`, `name`) VALUES (DEFAULT, 'en progreso');
-INSERT INTO `challengDb`.`status` (`id`, `name`) VALUES (DEFAULT, 'completada');
+USE `challengedb`;
+INSERT INTO `challengedb`.`status` (`id`, `name`) VALUES (DEFAULT, 'pendiente');
+INSERT INTO `challengedb`.`status` (`id`, `name`) VALUES (DEFAULT, 'en progreso');
+INSERT INTO `challengedb`.`status` (`id`, `name`) VALUES (DEFAULT, 'completada');
 
 COMMIT;
 

@@ -34,7 +34,7 @@ class Task {
             "body": JSON.stringify(data)
         };
 
-        let url = BASE_URL + '/task/create';
+        let url = BASE_URL + '/task';
 
         console.log(valueStatus)
 
@@ -45,9 +45,6 @@ class Task {
         } catch (e) {
 
         }
-
-
-
     }
 
     update(){
