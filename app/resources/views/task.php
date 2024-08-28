@@ -48,6 +48,8 @@
                 </tbody>
             </table>
 
+            <div id="messageTable" style="width: 100%; text-align: center;"></div>
+
         </div>
     </div>
 
@@ -59,7 +61,7 @@
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <h5 class="modal-title" id="exampleModalLongTitle">Nueva Tarea</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" onclick="task.closeModal()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -90,7 +92,7 @@
                                 <label class="input-group-text" for="status">@</label>
                             </div>
                             <select class="custom-select" id="status">
-                                <option selected>Estado</option>
+                                <option value="0" selected>Estado</option>
                                 <option value="1">Pendiente</option>
                                 <option value="2">En progresowo</option>
                                 <option value="3">Completada</option>

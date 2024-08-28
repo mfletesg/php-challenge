@@ -60,11 +60,7 @@ class Task
         if (!$stmt->execute()) {
             return null;
         }
-
-
         $result = $stmt->get_result(); // Obtiene el resultado como un objeto resultante de la consulta
-        $row = $result->fetch_assoc(); // Devuelve la primera fila como un array asociativo
-
         $tasks = [];
         while ($row = $result->fetch_assoc()) {
             $status = new Status($row['status_id'], $row['status_name']);
@@ -72,5 +68,30 @@ class Task
             $tasks[] = $task; // Añadir la instancia de Task al array $tasks
         }
         return $tasks; // Devuelve un array de objetos Task
+    }
+
+    public static function getById(int $id){
+        $db = ConnectionDb::getInstance();
+        $stmt = $db->prepare('  SELECT t.id, t.title, t.description, t.status_id, s.id AS status_id, s.name AS status_name
+                                FROM tasks t 
+                                INNER JOIN users_tasks ut ON t.id = ut.task_id 
+                                INNER JOIN status s on s.id = t.status_id
+                                WHERE t.id = ? ');
+        $stmt->bind_param('i', $id);
+        if (!$stmt->execute()) {
+            return null;
+        }
+
+        $result = $stmt->get_result(); // Obtiene el resultado como un objeto resultante de la consulta
+        $row = $result->fetch_assoc();
+
+        if ($row) {
+            $status = new Status($row['status_id'], $row['status_name']);
+            $task = new Task($row['id'], $row['title'], $row['description'], $row['status_id'], $status);
+            return $task; // Devuelve un array de objetos Task
+        }
+
+        return null;
+        
     }
 }

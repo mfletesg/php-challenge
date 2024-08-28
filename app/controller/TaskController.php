@@ -8,15 +8,6 @@ class TaskController
     public function index()
     {
         require VIEWS_PATH . '/task.php';
-        // if ($isJson === true) {
-        //     $userId = $_SESSION['userId'];
-        //     $responseDb = Task::getAll($userId);
-        //     $response = ['message' => 'ok', 'data' => $responseDb];
-        //     http_response_code(200);
-        //     return json_encode($response);
-        // } else {
-            
-        // }
     }
 
     public function get()
@@ -57,15 +48,18 @@ class TaskController
 
     }
 
-    public function getById()
+    public function getById(int $id)
     {
-
+        $responseDb = Task::getById($id);
+        $response = ['message' => 'ok', 'data' => $responseDb];
+        http_response_code(200);
+        return json_encode($response);
     }
 
 
     public function update()
     {
-
+        echo "ok2";
     }
 
     public function delete()

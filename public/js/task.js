@@ -1,5 +1,6 @@
 class Task {
-    constructor() {
+    constructor(url) {
+        this.url = url;
         this.getAll();
     }
 
@@ -7,17 +8,23 @@ class Task {
         const title = document.getElementById("title").value.trim();
         const description = document.getElementById("description").value.trim();
         const s = document.getElementById("status");
-        const valueStatus = s.value;
+        const valueStatus = parseInt(s.value);
 
         if (title === '') {
+            document.getElementById("title").focus();
             return false
         }
 
         if (description === '') {
+            document.getElementById("description").focus();
             return false
         }
 
-        if (valueStatus === 0 || valueStatus === '') {
+        console.log(valueStatus)
+
+        if (valueStatus === 0 || valueStatus === '' || valueStatus === null) {
+            console.log('ok2')
+            document.getElementById("status").focus();
             return false
         }
 
@@ -36,16 +43,10 @@ class Task {
             "body": JSON.stringify(data)
         };
 
-        let url = BASE_URL + '/task';
-
-        console.log(valueStatus)
-
         try {
-            let res = await fetch(url, options);
+            let res = await fetch(this.url, options);
             let response = await res.json();
-            $('#modalTask').modal('hide')
-            document.getElementById("taskForm").reset();
-
+            this.closeModal()
             await this.getAll();
 
         } catch (e) {
@@ -53,7 +54,51 @@ class Task {
         }
     }
 
-    update() {
+    
+    async update(taskId) {
+        const title = document.getElementById("title").value.trim();
+        const description = document.getElementById("description").value.trim();
+        const s = document.getElementById("status");
+        const valueStatus = s.value;
+
+        if (title === '') {
+            return false
+        }
+
+        if (description === '') {
+            return false
+        }
+
+        if (valueStatus === 0 || valueStatus === '') {
+            return false
+        }
+
+        let data = {
+            'taskId' : taskId,
+            'title': title,
+            'description': description,
+            'statusId': valueStatus,
+        }
+
+        let options = {
+            "method": 'PATCH',
+            "headers": {
+                "Content-Type": "application/json",
+                "accept": "application/json",
+            },
+            "body": JSON.stringify(data)
+        };
+
+        try {
+            let res = await fetch(this.url, options);
+            let response = await res.json();
+            this.closeModal();
+            await this.getAll();
+
+        } catch (e) {
+
+        }
+
 
     }
 
@@ -66,27 +111,34 @@ class Task {
                 'X-Requested-With': 'XMLHttpRequest'
             }
         };
-        let url = BASE_URL + '/task';
 
         try {
-            let res = await fetch(url, options);
+            let res = await fetch(this.url, options);
             let response = await res.json();
             // if (!res.ok) {
             //     throw new Error(`Error: ${res.status} - ${res.statusText}`);
             // }
-
             let html = '';
+            if (response.data.length === 0) {
+                html = '<div class="alert alert-secondary" role="alert" style="width: 100%">\
+                                No ninguna tarea en el sistema, añade un registro\
+                            </div>';
+                document.getElementById('messageTable').innerHTML = html
+                return false
+            }
+
+
             for (const task of response.data) {
-                html += "<tr>\
-                            <th scope='row'>"+ task['id'] + "</th>\
-                            <td>"+ task['title'] + "</td>\
-                            <td>"+ task['description'] + "</td>\
-                            <td>"+ task['status']['name'] + "</td>\
+                html += `<tr>\
+                            <th scope='row'>${task['id']}</th>\
+                            <td>${task['title']}</td>\
+                            <td>${task['description']}</td>\
+                            <td>${task['status']['name']}</td>\
                             <td>\
-                                <button type='button' class='btn btn-success btn-sm' onclick='task.openModal(2, "+ task['id'] + ", " + JSON.stringify(task) + " )'>✏️ Editar</button>\
-                                <button type='button' class='btn btn-danger btn-sm' onclick='deleteUser("+ task['id'] + ")'>🗑️ Eliminar</button>\
+                                <button type='button' class='btn btn-success btn-sm' onclick='task.getById(${task['id']})'>✏️ Editar</button>\
+                                <button type='button' class='btn btn-danger btn-sm' onclick='deleteUser(${task['id']})'>🗑️ Eliminar</button>\
                             </td>\
-                        </tr>";
+                        </tr>`;
 
             }
 
@@ -97,35 +149,72 @@ class Task {
         }
     }
 
-    getById() {
+    async getById(taskId) {
+        let options = {
+            "method": 'GET',
+            "headers": {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        };
+        let url = this.url + `?id=${taskId}`;
 
+        try {
+            let res = await fetch(url, options);
+            let response = await res.json();
+            console.log(response.data)
+            const data = response.data
+            document.getElementById("title").value = data.title;
+            document.getElementById("description").value = data.description;
+            document.getElementById("status").value = data.status.id;
+        } catch (e) {
+            console.log(e)
+        }
+        this.openModal(2)
     }
 
     delete() {
 
     }
 
-    openModal(action) {
+    openModal(action, taskId) {
         let html = "";
         switch (action) {
             case 1:
-                html += "<button type='button' class='btn btn-primary' onclick='task.create(1)'>Crear Tarea</button>"
+                html += `<button type='button' class='btn btn-primary' onclick='task.create()'>Crear Tarea</button>`
                 break;
 
             case 2:
-                html += "<button type='button' class='btn btn-primary' onclick='task.create(2)'>Actualizar Tarea</button>"
+                html += `<button type='button' class='btn btn-primary' onclick='task.update(${taskId})'>Actualizar Tarea</button>`
                 break;
 
             default:
                 break;
         }
-        html += "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancelar</button>"
+        html += "<button type='button' class='btn btn-secondary' onclick='task.closeModal()'>Cancelar</button>"
 
         document.getElementById('modalFooterTask').innerHTML = html;
         $('#modalTask').modal('show')
     }
 
+    
+    closeModal() {
+        $('#modalTask').modal('hide')
+        document.getElementById("taskForm").reset();
+    }
+
+
+    // validateForm() {
+    //     $('#modalTask').modal('hide')
+    //     document.getElementById("taskForm").reset();
+    // }
+
+
+
+
 }
 
+
 // Crear una instancia de la clase
-const task = new Task();
+const task = new Task(BASE_URL + '/task');

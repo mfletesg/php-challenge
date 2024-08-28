@@ -41,8 +41,8 @@ switch ($uri) {
         $controller = new TaskController();
         if ($method === 'GET') {
             $id = isset($_GET['id']) ?? null;
-            if($id === null){
-                echo $controller->getById();
+            if($id){
+                echo $controller->getById($id);
             }
             else if($isJson){
                 echo $controller->get();
