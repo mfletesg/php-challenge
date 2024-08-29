@@ -39,14 +39,15 @@
           <a href="<?=BASE_URL?>">Return to login</a>
       </div>
 
-      <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+      <p class="mt-5 mb-3 text-muted text-center">Prueba Miguel Fletes</p>
 
-      <span id="passwordError" class="error"></span><br><br>
+      <div id="passwordError" class="text-center"></div>
+      <br><br>
 
       <?php
         // Mostrar el mensaje si existe en la sesión
         if (isset($_SESSION['message'])) {
-          echo '<div class="alert alert-warning" role="alert">'.$_SESSION["message"].'</div>';
+          echo '<div class="alert alert-warning text-center" role="alert">'.$_SESSION["message"].'</div>';
         }
       ?>
     </form>

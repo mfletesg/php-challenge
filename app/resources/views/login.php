@@ -32,7 +32,7 @@
     <br>
     <div class="text-center">
       <a href="<?= BASE_URL ?>/user">Registrar nuevo usuario</a>
-      <p class="mt-5 mb-3 text-muted">Miguel Fletes</b>
+      <p class="mt-5 mb-3 text-muted">Prueba Miguel Fletes</b>
     </div>
 
 

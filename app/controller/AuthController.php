@@ -14,6 +14,7 @@ class AuthController
    */
   public function index()
   {
+    unset($_SESSION['message']);
     require VIEWS_PATH . '/login.php';
   }
 
@@ -27,7 +28,7 @@ class AuthController
    */
   public function login()
   {
-
+    unset($_SESSION['message']);
     $userName = isset($_POST['inputUserName']) ? $_POST['inputUserName'] : null;
     $password = isset($_POST['inputPassword']) ? $_POST['inputPassword'] : null;
 
@@ -43,7 +44,7 @@ class AuthController
     }
     $passwordDecript = decrypt($response->password);
     if ($passwordDecript !== $password) {
-      $_SESSION['message'] = "El usuario o la constraseña son incorrectos2";
+      $_SESSION['message'] = "El usuario o la constraseña son incorrectos";
       require VIEWS_PATH . '/login.php';
       exit();
     }

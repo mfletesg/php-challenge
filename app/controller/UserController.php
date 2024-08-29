@@ -13,6 +13,7 @@ class UserController
      */
     public function index()
     {
+        unset($_SESSION['message']);
         $posts = Auth::get();
         require VIEWS_PATH . '/registerUser.php';
     }
@@ -48,7 +49,7 @@ class UserController
         $user = User::getUserByUserName($userName);
 
         if ($user !== null) {
-            $_SESSION['message'] = "El nombre de usuario '{$user->username}' ya existe en el sistema";
+            $_SESSION['message'] = "El nombre de usuario <b>'{$user->username}'</b> ya existe en el sistema";
             require VIEWS_PATH . '/registerUser.php';
             exit();
         }
