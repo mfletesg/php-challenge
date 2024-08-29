@@ -82,9 +82,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `challengedb`;
-INSERT INTO `challengedb`.`status` (`id`, `name`) VALUES (DEFAULT, 'Pendiente');
-INSERT INTO `challengedb`.`status` (`id`, `name`) VALUES (DEFAULT, 'En progreso');
-INSERT INTO `challengedb`.`status` (`id`, `name`) VALUES (DEFAULT, 'Completada');
+INSERT INTO `challengedb`.`status` (`id`, `name`) VALUES (1, 'Pendiente');
+INSERT INTO `challengedb`.`status` (`id`, `name`) VALUES (2, 'En progreso');
+INSERT INTO `challengedb`.`status` (`id`, `name`) VALUES (3, 'Completada');
 
 COMMIT;
 

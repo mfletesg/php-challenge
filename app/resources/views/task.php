@@ -19,7 +19,7 @@
         <div class="form-inline my-2 my-lg-0">
 
             <span class="navbar-text">
-                👤 <?= $_SESSION['username'] ?>
+                <i class="fa-solid fa-user"></i> <?= $_SESSION['username'] ?>
             </span>
 
             <form action="<?= BASE_URL ?>/logout" method="post" id="formLogout">
@@ -32,7 +32,7 @@
 
     <div class="container">
         <div class="row">
-            <button type="button" class="btn btn-success" onclick="task.openModal(1)">➕ Crear Nueva Terea</button>
+            <button type="button" class="btn btn-primary" onclick="task.openModal(1)"><i class="fa-solid fa-plus"></i> Crear Terea</button>
         </div>
         <br><br>
         <div class="row">
@@ -69,12 +69,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="taskForm">
+                    <form id="taskForm" autocomplete="off">
 
                         <label for="title">Titulo</label>
                         <div class="input-group mb-2 mr-sm-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">@</div>
+                                <div class="input-group-text">
+                                <i class="fa-solid fa-book"></i>
+                                </div>
                             </div>
                             <input type="text" class="form-control" id="title"
                                 placeholder="Titulo" maxlength="60">
@@ -83,16 +85,20 @@
                         <label for="description">Descripción</label>
                         <div class="input-group mb-2 mr-sm-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">@</div>
+                                <div class="input-group-text">
+                                    <i class="fa-solid fa-file-signature"></i>
+                                </div>
                             </div>
                             <input type="text" class="form-control" id="description"
                                 placeholder="Descripción">
                         </div>
 
-                        <label for="status">Descripción</label>
+                        <label for="status">Estatus</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <label class="input-group-text" for="status">@</label>
+                                <label class="input-group-text" for="status">
+                                    <i class="fa-regular fa-circle"></i>
+                                </label>
                             </div>
                             <select class="custom-select" id="status">
                                 <option value="0" selected>Estado</option>

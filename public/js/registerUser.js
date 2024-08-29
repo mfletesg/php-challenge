@@ -23,10 +23,10 @@ class RegisterUser {
             valid = false;
         }
     
-        // if (password !== confirmPassword) {
-        //     document.getElementById('passwordError').innerText = 'La contraseña no coincide';
-        //     valid = false;
-        // }
+        if (password !== confirmPassword) {
+            document.getElementById('passwordError').innerText = 'La contraseña no coincide';
+            valid = false;
+        }
     
         if (valid) {
             document.getElementById('registrationForm').submit();

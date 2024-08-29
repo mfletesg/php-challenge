@@ -4,6 +4,13 @@ require_once './app/models/Status.php';
 
 class StatusController
 {
+
+    /**
+     * Obtiene todos los estados de la tarea
+     *
+     * @return {json} - Regresa la informacion de los estados de la tarea en formato JSON
+     * 
+     */
     public function get()
     {
         $responseDb = Status::getAll();
