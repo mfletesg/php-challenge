@@ -18,7 +18,7 @@ define('BASE_URL', $protocol . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER[
     en el código, ya que esto puede comprometer la seguridad.
 */
 $defaultEnvVars = [
-    'DB_HOST' => 'localhost1',
+    'DB_HOST' => 'localhost',
     'DB_NAME' => 'challengeDb',
     'DB_USER' => 'root',
     'DB_PASS' => '',
