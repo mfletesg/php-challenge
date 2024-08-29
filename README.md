@@ -94,9 +94,8 @@ Sigue estos pasos para poner el proyecto PHP en XAMPP usando MySQL.
 3. Importa el archivo `sql.sql` que viene en el proyecto y selecciona **Importar**
 ### 5. Accede al proyecto
 1. En el navegador, ve a http://localhost/php-challenge para ver el proyecto en acción.
-2. 
 
-# Proyecto de PHP con Variables de Entorno
+## Seguridad en el proyecto
 
 Este proyecto de PHP utiliza variables de entorno definidas en un archivo `.env` para almacenar información sensible, como credenciales de la base de datos, la URL base del proyecto y una clave para encriptación. **No es necesario crear el archivo `.env` en este proyecto de prueba, ya que las variables están hardcodeadas en el archivo `/loadEnv.php`**. Sin embargo, es importante destacar que, en un proyecto real, estas variables deben definirse únicamente en el archivo `.env` y no ser hardcodeadas en el código fuente por razones de seguridad.
 
