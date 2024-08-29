@@ -103,8 +103,8 @@ Sin embargo, es importante destacar que, en un proyecto real, estas variables de
 
 ## Variables de Entorno
 
-El archivo `.env` no está incluido en el repositorio por motivos de seguridad, pero se puede crear manualmente en la raíz del proyecto con las siguientes variables de ejemplo
-Estas variables corresponden a los accesos por defecto de XAMPP:
+El archivo `.env` no está incluido en el repositorio por motivos de seguridad, pero se puede crear manualmente en la raíz del proyecto con las siguientes variables de ejemplo:
+
 
 ```env
 DB_HOST=localhost
@@ -114,3 +114,6 @@ DB_PASS=
 BASE_URL=php-challenge
 KEY_ENCRYPTER=aeQejNaDKSN@!-f
 
+Estas variables corresponden a la configuración predeterminada de XAMPP. 
+
+**Si utilizas un valor diferente para tu servidor XAMPP, asegúrate de crear el archivo `.env` y actualizar los valores según sea necesario.**
