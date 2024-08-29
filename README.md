@@ -103,7 +103,8 @@ Sin embargo, es importante destacar que, en un proyecto real, estas variables de
 
 ## Variables de Entorno
 
-El archivo `.env` no está incluido en el repositorio por motivos de seguridad, pero se puede crear manualmente en la raíz del proyecto con las siguientes variables de ejemplo:
+El archivo `.env` no está incluido en el repositorio por motivos de seguridad, pero se puede crear manualmente en la raíz del proyecto con las siguientes variables de ejemplo
+Estas variables corresponden a los accesos por defecto de XAMPP:
 
 ```env
 DB_HOST=localhost
