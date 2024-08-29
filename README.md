@@ -113,6 +113,7 @@ DB_USER=root
 DB_PASS=
 BASE_URL=php-challenge
 KEY_ENCRYPTER=aeQejNaDKSN@!-f
+```
 
 Estas variables corresponden a la configuración predeterminada de XAMPP. 
 
