@@ -18,17 +18,17 @@
 
     <div class="form-label-group">
       <input type="text" id="inputUserName" name="inputUserName" class="form-control" placeholder="User Name" required
-        autofocus>
+        autofocus maxlength="60">
       <label for="inputUserName">👤 User Name</label>
     </div>
 
     <div class="form-label-group">
       <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password"
-        required>
+        required maxlength="100">
       <label for="inputPassword">🔑 Password</label>
     </div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesion</button>
 
     <br>
     <div class="text-center">

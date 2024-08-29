@@ -21,7 +21,7 @@ class User {
     {
         $db = ConnectionDb::getInstance();
         // Sentencia preparada para prevenir inyección SQL
-        $stmt = $db->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
+        $stmt = $db->prepare('INSERT INTO user (username, password) VALUES (?, ?)');
         $stmt->bind_param('ss', $userName, $password);
         if ($stmt->execute()) {
             return 'User created successfully';
@@ -34,7 +34,7 @@ class User {
     {
         $db = ConnectionDb::getInstance();
         // Sentencia preparada para prevenir inyección SQL
-        $stmt = $db->prepare('SELECT id, username, password FROM users WHERE username = ? LIMIT 1');
+        $stmt = $db->prepare('SELECT id, username, password FROM user WHERE username = ? LIMIT 1');
         $stmt->bind_param('s', $userName);
         $stmt->execute();
         $result = $stmt->get_result(); // Obtiene el resultado como un objeto resultante de la consulta

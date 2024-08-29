@@ -59,11 +59,39 @@ class TaskController
 
     public function update()
     {
-        echo "ok2";
+
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+        $userId = $_SESSION['userId'];
+
+        if (!$data || !isset($data) || !isset($data)) {
+            http_response_code(400);
+            return json_encode(['error' => 'La peticion debe ser de tipo JSON']);
+        }
+        
+
+        $taskId = $data['taskId'];
+        $title = $data['title'];
+        $description = $data['description'];
+        $statusId = $data['statusId'];
+
+        if ($title === '' || $description === '' || $statusId === '') {
+            http_response_code(400);
+            return json_encode(['error' => 'Faltan campos obligatorios: title, description, statusId']);
+
+        }
+
+
+        $responseDb = Task::update($userId, $taskId, $title, $description, $statusId);
+        $response = ['message' => 'ok', 'data' => $responseDb];
+        http_response_code(200);
+        return json_encode($response);
     }
 
-    public function delete()
+    public function delete(int $id)
     {
-
+        $responseDb = Task::delete($id);
+        http_response_code(204);
+        return null;
     }
 }

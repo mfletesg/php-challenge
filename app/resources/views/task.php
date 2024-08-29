@@ -21,7 +21,10 @@
             <span class="navbar-text">
                 👤 <?= $_SESSION['username'] ?>
             </span>
-            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Cerrar Sesión</button>
+
+            <form action="<?= BASE_URL ?>/logout" method="post" id="formLogout">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Cerrar Sesión</button>
+            </form>
         </div>
     </nav>
 
@@ -74,7 +77,7 @@
                                 <div class="input-group-text">@</div>
                             </div>
                             <input type="text" class="form-control" id="title"
-                                placeholder="Titulo">
+                                placeholder="Titulo" maxlength="60">
                         </div>
 
                         <label for="description">Descripción</label>
@@ -93,9 +96,9 @@
                             </div>
                             <select class="custom-select" id="status">
                                 <option value="0" selected>Estado</option>
-                                <option value="1">Pendiente</option>
-                                <option value="2">En progresowo</option>
-                                <option value="3">Completada</option>
+                                <option value="4">Pendiente</option>
+                                <option value="5">En progreso</option>
+                                <option value="6">Completada</option>
                             </select>
                         </div>
                     </form>

@@ -1,7 +1,6 @@
 <?php
 
-
-function encrypt($plaintext) {
+function encrypt(string $plaintext) {
     $ivlen = openssl_cipher_iv_length($cipher = "AES-128-CBC");
     $iv = openssl_random_pseudo_bytes($ivlen);
     $ciphertext_raw = openssl_encrypt($plaintext, $cipher, $_ENV['BASE_URL'], $options=OPENSSL_RAW_DATA, $iv);
@@ -9,7 +8,7 @@ function encrypt($plaintext) {
     return base64_encode($iv.$hmac.$ciphertext_raw);
 }
 
-function decrypt($ciphertext) {
+function decrypt(string $ciphertext) {
     $c = base64_decode($ciphertext);
     $ivlen = openssl_cipher_iv_length($cipher = "AES-128-CBC");
     $iv = substr($c, 0, $ivlen);
@@ -23,9 +22,25 @@ function decrypt($ciphertext) {
     return false;
 }
 
-function checkSession(){
+function checkSession(string $route = null){
     session_start();
-    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-        header('Location: '. BASE_URL . '/'); exit;
+    if($route === '/'){
+        if (isset($_SESSION['loggedin']) ) {
+            header('Location: '. BASE_URL . '/task'); exit;
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+            if($route === '/task'){
+                header('Location: '. BASE_URL . '/'); exit;
+                
+            }
+            else{
+                return false;
+            }
+        }
     }
 }

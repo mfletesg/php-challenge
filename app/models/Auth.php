@@ -10,7 +10,7 @@ class Auth {
     {
         $db = ConnectionDb::getInstance();
         // Sentencia preparada para prevenir inyección SQL
-        $stmt = $db->prepare('SELECT * FROM users');
+        $stmt = $db->prepare('SELECT * FROM user');
         $stmt->execute();
         $result = $stmt->get_result(); // Obtiene el resultado como un objeto resultante de la consulta
         return $result->fetch_all(MYSQLI_ASSOC); // Devuelve todas las filas como un array asociativo

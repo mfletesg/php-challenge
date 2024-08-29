@@ -6,5 +6,4 @@
 <script src="<?=BASE_URL?>/public/js/bootstrap/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
     var BASE_URL = "<?php echo BASE_URL; ?>";
-    console.log(BASE_URL);
 </script>

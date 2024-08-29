@@ -31,19 +31,11 @@ class Task
     {
         $db = ConnectionDb::getInstance();
         // Sentencia preparada para prevenir inyección SQL
-        $stmt = $db->prepare('INSERT INTO tasks (title, description, status_id) VALUES (?, ?, ?)');
-        $stmt->bind_param('ssi', $title, $description, $status_id);
+        $stmt = $db->prepare('INSERT INTO task (title, description, status_id, user_id) VALUES (?, ?, ?, ?)');
+        $stmt->bind_param('ssii', $title, $description, $status_id, $userId);
         if (!$stmt->execute()) {
             return 'Error: ' . $stmt->error;
         }
-
-        $taskId = $stmt->insert_id;
-        $stmt = $db->prepare('INSERT INTO users_tasks (user_id, task_id) VALUES (?, ?)');
-        $stmt->bind_param('ii', $userId, $taskId);
-        if (!$stmt->execute()) {
-            return 'Error: ' . $stmt->error;
-        }
-
         return 'User created successfully';
     }
 
@@ -51,10 +43,10 @@ class Task
     {
         $db = ConnectionDb::getInstance();
         $stmt = $db->prepare('  SELECT t.id, t.title, t.description, t.status_id, s.id AS status_id, s.name AS status_name
-                                FROM tasks t 
-                                INNER JOIN users_tasks ut ON t.id = ut.task_id 
+                                    FROM task t 
+                                INNER JOIN user u ON u.id = t.user_id
                                 INNER JOIN status s on s.id = t.status_id
-                                WHERE ut.user_id = ? ');
+                                    WHERE u.id = ? ');
         $stmt->bind_param('i', $userId);
 
         if (!$stmt->execute()) {
@@ -73,15 +65,14 @@ class Task
     public static function getById(int $id){
         $db = ConnectionDb::getInstance();
         $stmt = $db->prepare('  SELECT t.id, t.title, t.description, t.status_id, s.id AS status_id, s.name AS status_name
-                                FROM tasks t 
-                                INNER JOIN users_tasks ut ON t.id = ut.task_id 
+                                    FROM task t 
+                                INNER JOIN user u ON u.id = t.user_id
                                 INNER JOIN status s on s.id = t.status_id
-                                WHERE t.id = ? ');
+                                    WHERE t.id = ? ');
         $stmt->bind_param('i', $id);
         if (!$stmt->execute()) {
             return null;
         }
-
         $result = $stmt->get_result(); // Obtiene el resultado como un objeto resultante de la consulta
         $row = $result->fetch_assoc();
 
@@ -93,5 +84,27 @@ class Task
 
         return null;
         
+    }
+
+    public static function update(int $userId,  int $taskId, string $title, string $description, int $statusId){
+        $db = ConnectionDb::getInstance();
+        $stmt = $db->prepare(' UPDATE task SET title = ?, description = ?, status_id = ? WHERE id = ? AND user_id = ? ');
+        $stmt->bind_param('ssiii', $title, $description, $statusId,  $taskId, $userId);
+        if (!$stmt->execute()) {
+            return null;
+        }
+
+        return 'User updated successfully';
+    }
+
+    public static function delete(int $id){
+        $db = ConnectionDb::getInstance();
+        $stmt = $db->prepare('DELETE FROM task WHERE id = ? ');
+        $stmt->bind_param('i', $id);
+        if (!$stmt->execute()) {
+            return null;
+        }
+
+        return null;
     }
 }
