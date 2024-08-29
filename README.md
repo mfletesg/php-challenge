@@ -97,7 +97,9 @@ Sigue estos pasos para poner el proyecto PHP en XAMPP usando MySQL.
 
 ## Seguridad en el proyecto
 
-Este proyecto de PHP utiliza variables de entorno definidas en un archivo `.env` para almacenar información sensible, como credenciales de la base de datos, la URL base del proyecto y una clave para encriptación. **No es necesario crear el archivo `.env` en este proyecto de prueba, ya que las variables están hardcodeadas en el archivo `/loadEnv.php`**. Sin embargo, es importante destacar que, en un proyecto real, estas variables deben definirse únicamente en el archivo `.env` y no ser hardcodeadas en el código fuente por razones de seguridad.
+Este proyecto de PHP utiliza variables de entorno definidas en un archivo `.env` para almacenar información sensible, como credenciales de la base de datos, la URL base del proyecto y una clave para encriptación. **No es necesario crear el archivo `.env` en este proyecto de prueba, ya que las variables están hardcodeadas en el archivo `/loadEnv.php`**. 
+
+Sin embargo, es importante destacar que, en un proyecto real, estas variables deben definirse únicamente en el archivo `.env` y no ser hardcodeadas en el código fuente por razones de seguridad.
 
 ## Variables de Entorno
 
