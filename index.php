@@ -2,7 +2,7 @@
 
 /*
     Prueba de PHP sin Framework: Miguel Fletes García.
-    // Puedes encontrar más detalles en mi GitHub: https://github.com/tu_usuario
+    Puedes encontrar más detalles en mi GitHub: https://github.com/mfletesg
     
     Este proyecto se realizó sin el uso de frameworks en PHP. Se utilizó una arquitectura MVC para gestionar mejor el proyecto
     y mantener buenas prácticas de desarrollo. Además, se empleó la programación orientada a objetos (POO) para las clases relacionadas
