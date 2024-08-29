@@ -8,3 +8,4 @@
 <script>
     var BASE_URL = "<?php echo BASE_URL; ?>";
 </script>
+<link rel="icon" href="<?= BASE_URL ?>/public/img/php-logo.svg" type="image/x-icon">

@@ -1,4 +1,4 @@
-# Prueba con PHP sin framework
+# Prueba Miguel Fletes con PHP sin framework
 Este proyecto se desarrolló sin el uso de frameworks en PHP. Se empleó una arquitectura MVC para gestionar el proyecto de manera eficiente y mantener buenas prácticas de desarrollo. Además, se utilizó la programación orientada a objetos (POO) para las clases relacionadas con las bases de datos, emulando un tipo de ORM.
 <div style="text-align: center;">
 <img src="./public/img/php-logo.svg" alt="php-logo" width="100" height="100">
@@ -30,6 +30,7 @@ El proyecto utiliza MySQL como soporte para la base de datos. El archivo sql.sql
 - **`sql.sql`**: Archivo de la base de datos.
 - **`loadEnv.php`**: Archivo con las variables de entorno.
 - **`.htaccess`**: Configuración para que el proyecto en PHP pueda usar rutas amigables.
+- **`model.mwb`**: Modelo entidad relación de la base de datos hecho en Mysql Workbench.
   
 
 
