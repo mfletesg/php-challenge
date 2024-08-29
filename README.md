@@ -1,5 +1,6 @@
 # Prueba con PHP sin framework
 Este proyecto se desarrolló sin el uso de frameworks en PHP. Se empleó una arquitectura MVC para gestionar el proyecto de manera eficiente y mantener buenas prácticas de desarrollo. Además, se utilizó la programación orientada a objetos (POO) para las clases relacionadas con las bases de datos, emulando un tipo de ORM.
+<<<<<<< HEAD
 <div style="text-align: center;">
 <img src="./public/img/php-logo.svg" alt="php-logo" width="100" height="100">
 </div>
@@ -10,6 +11,8 @@ Este proyecto se desarrolló sin el uso de frameworks en PHP. Se empleó una arq
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white" alt="MySQL">
   <img src="https://img.shields.io/badge/XAMPP-6C6C6C?style=flat-square&logo=XAMPP&logoColor=white" alt="XAMPP">
 </div>
+=======
+>>>>>>> 59d5b54a10b6d026d729df20e6b9dbb9f4b71687
 
 ## Estructura del proyecto
 El proyecto utiliza MySQL como soporte para la base de datos. El archivo sql.sql contiene la base de datos, la cual está lista para ser importada.
@@ -57,6 +60,7 @@ El proyecto utiliza MySQL como soporte para la base de datos. El archivo sql.sql
 
 
 ## Base de datos 
+<<<<<<< HEAD
 El proyecto utiliza MySQL como sistema de gestión de bases de datos. El archivo `sql.sql` contiene la estructura de la base de datos, la cual está lista para ser importada. La base de datos incluye tres tablas:
 
 - **`user`**: Usuarios del sistema.
@@ -64,6 +68,11 @@ El proyecto utiliza MySQL como sistema de gestión de bases de datos. El archivo
 - **`status`**: Estado de las tareas.
 
 ![db](./public/img/db.png)
+=======
+El proyecto utiliza MySQL como soporte para la base de datos. El archivo sql.sql contiene la base de datos, la cual está lista para ser importada.
+
+
+>>>>>>> 59d5b54a10b6d026d729df20e6b9dbb9f4b71687
 
 
 ## Instrucciones de configuración
